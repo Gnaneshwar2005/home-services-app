@@ -8,7 +8,29 @@ const { Panel } = Collapse;
 const { Option } = Select;
 
 export default function AddServices() {
-  const [field, setField] = useState({});
+  const [field, setField] = useState({
+    // existing
+    name: '',
+    type: '',
+    experiance: '',
+    description: '',
+    tag: '',
+    street1: '',
+    street2: '',
+    country: '',
+    state: '',
+    city: '',
+    zipcode: '',
+    ownerName: '',
+    ownerPhone: '',
+    customersServed: '',
+    // new fields
+    ownerEmail: '',
+    ownerGender: '',
+    ownerStreet1: '',
+    ownerStreet2: '',
+  });
+
   const navigate = useNavigate();
   const [loader, setLoader] = useState(false);
   const [categoryOption, setCategoryOption] = useState([]);
@@ -104,8 +126,17 @@ export default function AddServices() {
       },
       typeObj: categoryObj,
       ownerObj: {
-        name: field.ownerName, // I changed
-        phone: field.ownerPhone, // I change
+        name: field.ownerName,
+        phone: field.ownerPhone,
+        email: field.ownerEmail, // ✅ add this
+        gender: field.ownerGender, // ✅ add this
+        addressObj: {
+          street1: field.ownerStreet1,
+          street2: field.ownerStreet2,
+          newCity: cityObj,
+          newState: stateObj,
+          newCountry: { country: 'India', calling_code: '91' },
+        },
       },
     };
 
@@ -249,6 +280,37 @@ export default function AddServices() {
                     onChange={(e) => setFieldFn('ownerPhone', e.target.value)}
                     placeholder='Enter phone number'
                   />
+                </div>
+              </Col>
+            </Row>
+            <Row gutter={24}>
+              <Col span={10} offset={1}>
+                <div style={{ marginBottom: '1rem' }}>
+                  <div style={{ paddingBottom: '0.5rem', fontWeight: 'bold' }}>
+                    Owner Email:
+                  </div>
+                  <Input
+                    value={field.ownerEmail}
+                    onChange={(e) => setFieldFn('ownerEmail', e.target.value)}
+                    placeholder="Enter owner's email"
+                  />
+                </div>
+              </Col>
+              <Col span={10} offset={1}>
+                <div style={{ marginBottom: '1rem' }}>
+                  <div style={{ paddingBottom: '0.5rem', fontWeight: 'bold' }}>
+                    Owner Gender:
+                  </div>
+                  <Select
+                    value={field.ownerGender}
+                    onChange={(e) => setFieldFn('ownerGender', e)}
+                    placeholder='Select Gender'
+                    style={{ width: '100%', fontWeight: 'normal' }}
+                  >
+                    <Option key='Male'>Male</Option>
+                    <Option key='Female'>Female</Option>
+                    <Option key='Other'>Other</Option>
+                  </Select>
                 </div>
               </Col>
             </Row>

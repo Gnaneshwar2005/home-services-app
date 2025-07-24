@@ -6,11 +6,12 @@ function OwnerInfo({ data }) {
     <Card>
       <Row className='customRow'>
         <span className='text-dark'>Name:</span>
-        <span>{data?.ownerObj?.name}</span>
+        <span>{data?.ownerObj?.name || 'Not specified'}</span>
       </Row>
+
       <Row className='customRow'>
         <span className='text-dark'>Email:</span>
-        <span>{data?.ownerObj?.email}</span>
+        <span>{data?.ownerObj?.email || 'Not specified'}</span>
       </Row>
       <Row className='customRow'>
         <span className='text-dark'>Phone:</span>

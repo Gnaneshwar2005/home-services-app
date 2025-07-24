@@ -36,7 +36,7 @@ function MainDetails({ data }) {
             </div>
             <div className='flex items-center'>
               <div className='text-gray-600 mr-2'>Experience:</div>
-              <div>{data.experience}</div>
+              <div>{data.experiance}</div>
             </div>
           </div>
         </Card>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Input, Form, notification } from 'antd';
-import { useNavigate ,Link} from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { SendOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import Logo from '../../Layout/Logo';
@@ -14,6 +14,7 @@ function ForgotPassword() {
   const [form] = Form.useForm();
   const sendOtp = () => {
     setLoading(true);
+    console.log(form.getFieldsValue());
     axios
       .post(API.sendOtp, form.getFieldsValue())
       .then((res) => {
@@ -44,11 +45,11 @@ function ForgotPassword() {
   };
   return (
     <PublicLayout>
-    <div className='w-full  p-8 bg-white rounded-lg shadow-lg text-center'>
-      <div className='flex align-middle justify-center items-center'>
-        <Logo />
-      </div>
-      <h2 className='welcomeBack'>Welcome back</h2>
+      <div className='w-full  p-8 bg-white rounded-lg shadow-lg text-center'>
+        <div className='flex align-middle justify-center items-center'>
+          <Logo />
+        </div>
+        <h2 className='welcomeBack'>Welcome back</h2>
         <p className='loginIntoAccount'>
           Enter your email to recover your account
         </p>
@@ -78,9 +79,8 @@ function ForgotPassword() {
           </Form>
         </div>
         <Link to={'/'}>Back</Link>
-    </div>
-  </PublicLayout>
-    
+      </div>
+    </PublicLayout>
   );
 }
 
